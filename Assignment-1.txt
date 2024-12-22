@@ -70,10 +70,10 @@ SELECT DISTINCT DEPARTMENT_NAME FROM EMPLOYEE;
 -- 5. Total salary paid for all employees
 SELECT SUM(ANNUAL_SALARY) AS Total_Salary FROM EMPLOYEE;
 
--- 6. Total commission paid to all employees (assuming COMM column exists)
+-- 6. Total commission paid to all employees
 SELECT SUM(COMM) AS Total_Commission FROM EMPLOYEE;
 
--- 7. Job titles of employees that get commission
+-- 7. Job titles of employees who get commission paid
 SELECT DISTINCT DESIGNATION FROM EMPLOYEE WHERE COMM > 0;
 
 -- 8. System date
@@ -83,67 +83,101 @@ SELECT SYSDATE AS Current_Date FROM DUAL;
 SELECT AVG(ANNUAL_SALARY) AS Average_Salary FROM EMPLOYEE;
 
 -- 10. How many employees are there in each department?
-SELECT DEPARTMENT_NAME, COUNT(*) AS Total_Employees FROM EMPLOYEE GROUP BY DEPARTMENT_NAME;
+SELECT DEPARTMENT_NAME, COUNT(*) AS Total_Employees 
+FROM EMPLOYEE
+GROUP BY DEPARTMENT_NAME;
 
--- 11. Total salary of employees in each department
-SELECT DEPARTMENT_NAME, SUM(ANNUAL_SALARY) AS Total_Salary FROM EMPLOYEE GROUP BY DEPARTMENT_NAME;
+-- 11. Total salary of the employees in each department
+SELECT DEPARTMENT_NAME, SUM(ANNUAL_SALARY) AS Total_Salary 
+FROM EMPLOYEE
+GROUP BY DEPARTMENT_NAME;
 
 -- 12. How many employees are there under each job title?
-SELECT DESIGNATION, COUNT(*) AS Total_Employees FROM EMPLOYEE GROUP BY DESIGNATION;
+SELECT DESIGNATION, COUNT(*) AS Total_Employees 
+FROM EMPLOYEE
+GROUP BY DESIGNATION;
 
 -- 13. Average salary paid for each job title
-SELECT DESIGNATION, AVG(ANNUAL_SALARY) AS Average_Salary FROM EMPLOYEE GROUP BY DESIGNATION;
+SELECT DESIGNATION, AVG(ANNUAL_SALARY) AS Average_Salary 
+FROM EMPLOYEE
+GROUP BY DESIGNATION;
 
 -- 14. Hire day, month, and year for each employee
-SELECT EMPLOYEE_NAME, EXTRACT(DAY FROM HIRE_DATE) AS Hire_Day, EXTRACT(MONTH FROM HIRE_DATE) AS Hire_Month, EXTRACT(YEAR FROM HIRE_DATE) AS Hire_Year FROM EMPLOYEE;
+SELECT EMPLOYEE_NAME, EXTRACT(DAY FROM HIRE_DATE) AS Hire_Day, 
+       EXTRACT(MONTH FROM HIRE_DATE) AS Hire_Month, 
+       EXTRACT(YEAR FROM HIRE_DATE) AS Hire_Year 
+FROM EMPLOYEE;
 
--- 15. Sort the employee department-wise
-SELECT * FROM EMPLOYEE ORDER BY DEPARTMENT_NAME;
+-- 15. Sort the employee department wise
+SELECT * FROM EMPLOYEE
+ORDER BY DEPARTMENT_NAME;
 
 -- 16. Sort the employee based on their job titles
-SELECT * FROM EMPLOYEE ORDER BY DESIGNATION;
+SELECT * FROM EMPLOYEE
+ORDER BY DESIGNATION;
 
 -- 17. Sort the employee based on descending order of their salaries
-SELECT * FROM EMPLOYEE ORDER BY ANNUAL_SALARY DESC;
+SELECT * FROM EMPLOYEE
+ORDER BY ANNUAL_SALARY DESC;
 
 -- 18. Sort the employee ascending order of their department and descending order of their salary
-SELECT * FROM EMPLOYEE ORDER BY DEPARTMENT_NAME ASC, ANNUAL_SALARY DESC;
+SELECT * FROM EMPLOYEE
+ORDER BY DEPARTMENT_NAME ASC, ANNUAL_SALARY DESC;
 
 -- 19. How many employees have their name with 6 characters
-SELECT COUNT(*) AS Employees_With_6_Char_Names FROM EMPLOYEE WHERE LENGTH(EMPLOYEE_NAME) = 6;
+SELECT COUNT(*) AS Total_Employees_With_6_Char_Name 
+FROM EMPLOYEE
+WHERE LENGTH(EMPLOYEE_NAME) = 6;
 
 -- 20. Maximum and minimum salary paid
-SELECT MAX(ANNUAL_SALARY) AS Max_Salary, MIN(ANNUAL_SALARY) AS Min_Salary FROM EMPLOYEE;
+SELECT MAX(ANNUAL_SALARY) AS Max_Salary, MIN(ANNUAL_SALARY) AS Min_Salary 
+FROM EMPLOYEE;
 
 -- 21. Maximum, minimum, average, and sum of salary paid under each department
-SELECT DEPARTMENT_NAME, MAX(ANNUAL_SALARY) AS Max_Salary, MIN(ANNUAL_SALARY) AS Min_Salary, AVG(ANNUAL_SALARY) AS Avg_Salary, SUM(ANNUAL_SALARY) AS Total_Salary FROM EMPLOYEE GROUP BY DEPARTMENT_NAME;
+SELECT DEPARTMENT_NAME, 
+       MAX(ANNUAL_SALARY) AS Max_Salary, 
+       MIN(ANNUAL_SALARY) AS Min_Salary, 
+       AVG(ANNUAL_SALARY) AS Avg_Salary, 
+       SUM(ANNUAL_SALARY) AS Total_Salary 
+FROM EMPLOYEE
+GROUP BY DEPARTMENT_NAME;
 
 -- 22. Sort the employee based on their hire date
-SELECT * FROM EMPLOYEE ORDER BY HIRE_DATE;
+SELECT * FROM EMPLOYEE
+ORDER BY HIRE_DATE;
 
 -- 23. Employee who joined latest
-SELECT * FROM EMPLOYEE WHERE HIRE_DATE = (SELECT MAX(HIRE_DATE) FROM EMPLOYEE);
+SELECT * FROM EMPLOYEE
+WHERE HIRE_DATE = (SELECT MAX(HIRE_DATE) FROM EMPLOYEE);
 
--- 24. Oldest employee in the organization based on their hire date
-SELECT * FROM EMPLOYEE WHERE HIRE_DATE = (SELECT MIN(HIRE_DATE) FROM EMPLOYEE);
+-- 24. Who is the oldest employee in the organization based on their hire date?
+SELECT * FROM EMPLOYEE
+WHERE HIRE_DATE = (SELECT MIN(HIRE_DATE) FROM EMPLOYEE);
 
 -- 25. Sort the employee based on their hire year (descending) and department (ascending)
-SELECT * FROM EMPLOYEE ORDER BY EXTRACT(YEAR FROM HIRE_DATE) DESC, DEPARTMENT_NAME ASC;
+SELECT * FROM EMPLOYEE
+ORDER BY EXTRACT(YEAR FROM HIRE_DATE) DESC, DEPARTMENT_NAME ASC;
 
 -- 26. Employees who get salaries greater than or equal to the average salary of employees
-SELECT * FROM EMPLOYEE WHERE ANNUAL_SALARY >= (SELECT AVG(ANNUAL_SALARY) FROM EMPLOYEE);
+SELECT * FROM EMPLOYEE
+WHERE ANNUAL_SALARY >= (SELECT AVG(ANNUAL_SALARY) FROM EMPLOYEE);
 
--- 27. Employees who get salary less than or equal to average salary of employees
-SELECT * FROM EMPLOYEE WHERE ANNUAL_SALARY <= (SELECT AVG(ANNUAL_SALARY) FROM EMPLOYEE);
+-- 27. Employees who get salary less than or equal to the average salary of employees
+SELECT * FROM EMPLOYEE
+WHERE ANNUAL_SALARY <= (SELECT AVG(ANNUAL_SALARY) FROM EMPLOYEE);
 
 -- 28. Employees get salaries between 2000 and 4000
-SELECT * FROM EMPLOYEE WHERE ANNUAL_SALARY BETWEEN 2000 AND 4000;
+SELECT * FROM EMPLOYEE
+WHERE ANNUAL_SALARY BETWEEN 2000 AND 4000;
 
--- 29. Employees who get the highest and lowest salary
-SELECT * FROM EMPLOYEE WHERE ANNUAL_SALARY = (SELECT MAX(ANNUAL_SALARY) FROM EMPLOYEE)
-UNION
-SELECT * FROM EMPLOYEE WHERE ANNUAL_SALARY = (SELECT MIN(ANNUAL_SALARY) FROM EMPLOYEE);
+-- 29. Which employees get the highest and lowest salary?
+SELECT * FROM EMPLOYEE
+WHERE ANNUAL_SALARY = (SELECT MAX(ANNUAL_SALARY) FROM EMPLOYEE)
+   OR ANNUAL_SALARY = (SELECT MIN(ANNUAL_SALARY) FROM EMPLOYEE);
 
--- 30. Number of gifts needed for employees joining next month
-SELECT COUNT(*) AS Gifts_For_Next_Month FROM EMPLOYEE WHERE EXTRACT(MONTH FROM HIRE_DATE) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, 1));
+-- 30. Gifts needed for employees joining next month
+SELECT COUNT(*) AS Gifts_Needed 
+FROM EMPLOYEE
+WHERE EXTRACT(MONTH FROM HIRE_DATE) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, 1));
+
 
