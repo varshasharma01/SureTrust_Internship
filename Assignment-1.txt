@@ -1,2 +1,65 @@
 -- Answers of Assignment-1 by Varsha Sharma
 
+--creating dept table first
+create table dept(   
+  deptno number(2,0),   
+  dname varchar2(14),   
+  loc varchar2(13),   
+  constraint pk_dept primary key (deptno)   
+)
+
+--Creating employee table 
+
+CREATE TABLE EMPLOYEE(
+EMPLOYEE_ID VARCHAR2(10) NOT NULL,
+EMPLOYEE_NAME VARCHAR2(50) NOT NULL,
+DEPARTMENT_NAME VARCHAR2(100) NOT NULL,
+DESIGNATION VARCHAR2(100) NOT NULL,
+HIRE_DATE DATE NOT NULL,
+ANNUAL_SALARY NUMBER(10,0) NOT NULL,
+CONSTRAINT PK_EMPLOYEE PRIMARY KEY (EMPLOYEE_ID)
+);
+
+insert into employee values('S1001','John Smith','Human Resources','HR Manager',TO_DATE('15-05-2023','DD-MM-YYYY'),60000);
+insert into employee values('S1002','Jane Doe','Marketing','Marketing Specialist',TO_DATE('20-08-2023','DD-MM-YYYY'),50000);
+insert into employee values('S1003','Michael Johnson','Finance','Financial Analyst',TO_DATE('10-10-2023','DD-MM-YYYY'),55000);
+insert into employee values('S1004','Emily Brown','Sales','Sales Representative',TO_DATE('25-03-2023','DD-MM-YYYY'),48000);
+insert into employee values('S1005','David Wilson','Information Technology','IT Specialist',TO_DATE('12-09-2023','DD-MM-YYYY'),60000);
+insert into employee values('S1006','Lisa Taylor','Operations','Operations Manager',TO_DATE('30-06-2023','DD-MM-YYYY'),65000);
+insert into employee values('S1007','Daniel Martinez','Customer Service','Customer Service Representative',TO_DATE('05-11-2023','DD-MM-YYYY'),45000);
+insert into employee values('S1008','Sarah Anderson','Research and Development','R&D Engineer',TO_DATE('18-04-2023','DD-MM-YYYY'),58000);
+insert into employee values('S1009','Christopher Thomas','Production','Production Supervisor',TO_DATE('22-07-2023','DD-MM-YYYY'),52000);
+insert into employee values('S1010','Kimberly Garcia','Quality Assurance','QA Analyst',TO_DATE('14-02-2023','DD-MM-YYYY'),56000);
+insert into employee values('S1011','William Hernandez','Human Resources','HR Coordinator',TO_DATE('01-09-2023','DD-MM-YYYY'),48000);
+insert into employee values('S1012','Melissa Lopez','Marketing','Marketing Manager',TO_DATE('10-06-2023','DD-MM-YYYY'),65000);
+insert into employee values('S1013','Richard Perez','Finance','Finance Manager',TO_DATE('18-11-2023','DD-MM-YYYY'),70000);
+insert into employee values('S1014','Jessica Gonzalez','Sales','Sales Manager',TO_DATE('03-05-2023','DD-MM-YYYY'),72000);
+insert into employee values('S1015','Matthew Wilson','Information Technology','IT Manager',TO_DATE('08-08-2023','DD-MM-YYYY'),75000);
+insert into employee values('S1016','Amanda Martinez','Operations','Operations Coordinator',TO_DATE('29-10-2023','DD-MM-YYYY'),48000);
+insert into employee values('S1017','James Johnson','Customer Service','Customer Service Manager',TO_DATE('12-03-2023','DD-MM-YYYY'),68000);
+insert into employee values('S1018','Laura Brown','Research and Development','R&D Manager',TO_DATE('25-06-2023','DD-MM-YYYY'),70000);
+insert into employee values('S1019','Daniel Smith','Production','Production Manager',TO_DATE('30-09-2023','DD-MM-YYYY'),72000);
+insert into employee values('S1020','Jennifer Davis','Quality Assurance','QA Manager',TO_DATE('17-01-2023','DD-MM-YYYY'),75000);
+insert into employee values('S1021','Michael Garcia','Human Resources','HR Assistant',TO_DATE('05-07-2023','DD-MM-YYYY'),42000);
+insert into employee values('S1022','Amy Hernandez','Marketing','Marketing Coordinator',TO_DATE('28-04-2023','DD-MM-YYYY'),48000);
+insert into employee values('S1023','Christopher Rodriguez','Finance','Senior Financial Analyst',TO_DATE('12-11-2023','DD-MM-YYYY'),60000);
+insert into employee values('S1024','Jessica Martinez','Sales','Senior Sales Representative',TO_DATE('25-05-2023','DD-MM-YYYY'),55000);
+insert into employee values('S1025','David Wilson','Information Technology','Senior IT Specialist',TO_DATE('30-08-2023','DD-MM-YYYY'),70000);
+insert into employee values('S1026','Sarah Smith','Operations','Assistant Operations Manager',TO_DATE('15-10-2023','DD-MM-YYYY'),55000);
+insert into employee values('S1027','Matthew Johnson','Customer Service','Senior Customer Service Representative',TO_DATE('28-03-2023','DD-MM-YYYY'),50000);
+insert into employee values('S1028','Emily Davis','Research and Development','R&D Technician',TO_DATE('01-06-2023','DD-MM-YYYY'),48000);
+insert into employee values('S1029','Daniel Wilson','Production','Senior Production Supervisor',TO_DATE('08-09-2023','DD-MM-YYYY'),60000);
+insert into employee values('S1030','Jennifer Martinez','Quality Assurance','Senior QA Analyst',TO_DATE('22-02-2023','DD-MM-YYYY'),62000);
+insert into employee values('S1031','Michael Smith','Human Resources','HR Generalist',TO_DATE('17-07-2023','DD-MM-YYYY'),50000);
+insert into employee values('S1032','Jessica Johnson','Marketing','Marketing Assistant',TO_DATE('10-04-2023','DD-MM-YYYY'),42000);
+insert into employee values('S1033','David Brown','Finance','Junior Financial Analyst',TO_DATE('26-11-2023','DD-MM-YYYY'),48000);
+insert into employee values('S1034','Sarah Garcia','Sales','Sales Coordinator',TO_DATE('17-06-2023','DD-MM-YYYY'),50000);
+insert into employee values('S1035','Matthew Hernandez','Information Technology','Junior IT Specialist',TO_DATE('20-09-2023','DD-MM-YYYY'),48000);
+insert into employee values('S1036','Emily Rodriguez','Operations','Operations Assistant',TO_DATE('03-12-2023','DD-MM-YYYY'),42000);
+insert into employee values('S1037','Daniel Davis','Customer Service','Customer Service Associate',TO_DATE('06-04-2023','DD-MM-YYYY'),40000);
+insert into employee values('S1038','Jennifer Smith','Research and Development','R&D Assistant',TO_DATE('30-07-2023','DD-MM-YYYY'),42000);
+insert into employee values('S1039','Michael Johnson','Production','Production Assistant',TO_DATE('25-10-2023','DD-MM-YYYY'),40000);
+insert into employee values('S1040','Jessica Martinez','Quality Assurance','QA Assistant',TO_DATE('20-03-2023','DD-MM-YYYY'),42000);
+
+
+--
