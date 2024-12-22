@@ -1,0 +1,33 @@
+-- Questions of Assignment 1
+
+ Write SQL for the below mentioned requirements to extract: 
+1. total number of employees 
+2. total number of departments 
+3. all the employees 
+4. all the departments 
+5. total salary paid for all employees. 
+6. total commission paid to all employees. 
+7. Which job titles of the employees get commission paid. 
+8. System date 
+9. Average salary paid to all employees. 
+10. How many employees are there in each department? 
+11. Total salary of the employees in each department 
+12. How many employees are there under each job title? 
+13. Average salary paid for each job title. 
+14. hire day, month, and year for each employee. 
+15. Sort the employee department wise. 
+16. Sort the employee based on their job titles. 
+17. Sort the employee based on descending order of their salaries. 
+18. Sort the employee ascending order of their department and descending order of their salary. 
+19. How many employees have their name with 6 characters. 
+20. Maximum and minimum salary paid. 
+21. Maximum, minimum, average and sum of salary paid under each department. 
+22. Sort the employee based on their hire date. 
+23. Employee who joined latest 
+24. Who is the oldest employee in the organization based on their hire date? 
+25. Sort the employee based on their hire year (descending) and department (ascending)
+26. Employees who get salaries greater than or equal to the average salary of employees. 
+27. Employees who get salary less than or equal to average salary of employees. 
+28. Employees get salaries between 2000 and 4000. 
+29. Which employees get the highest and lowest salary? 
+30. We need to celebrate the joining month of the employees. We plan to buy a gift for each of them. How many gifts do I need to buy for next month?
