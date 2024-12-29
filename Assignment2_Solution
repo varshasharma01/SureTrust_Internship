@@ -1,0 +1,61 @@
+-- Here are the solutions of assignment 2 
+
+-- Retrieve all records from the Continents table
+SELECT * FROM Continents;
+
+-- Retrieve all records from the Countries table
+SELECT * FROM Countries;
+
+-- Retrieve all records from the Car_Makers table
+SELECT * FROM Car_Makers;
+
+-- Retrieve all records from the Model_details table
+SELECT * FROM Model_details;
+
+-- Retrieve all records from the Car_Names table
+SELECT * FROM Car_Names;
+
+-- Retrieve all records from the Car_Details table
+SELECT * FROM Car_Details;
+
+-- 1. Retrieve countries and their continents, ordered by continent names
+SELECT c.CountryName, ct.Continent FROM Countries c JOIN Continents ct ON c.Continent = ct.ContID ORDER BY ct.Continent;
+
+-- 2. Count the number of countries within each continent
+SELECT ct.Continent, COUNT(c.CountryID) AS NumberOfCountries FROM Continents ct LEFT JOIN Countries c ON c.Continent = ct.ContID GROUP BY ct.ContID, ct.Continent;
+
+-- 3. List countries with no car makers
+SELECT c.CountryName FROM Countries c LEFT JOIN Car_Makers cm ON c.CountryID = cm.Country WHERE cm.ID IS NULL;
+
+-- 4. List car makers from Japan
+SELECT cm.Maker, cm.FullName FROM Car_Makers cm JOIN Countries c ON cm.Country = c.CountryID WHERE UPPER(c.CountryName) = 'JAPAN';
+
+-- 5. List car makers from France and USA
+SELECT cm.Maker, cm.FullName FROM Car_Makers cm JOIN Countries c ON cm.Country = c.CountryID WHERE UPPER(c.CountryName) IN ('FRANCE', 'USA');
+
+-- 6. Find the country and continent of the Volvo car maker
+SELECT c.CountryName, ct.Continent FROM Car_Makers cm JOIN Countries c ON cm.Country = c.CountryID JOIN Continents ct ON c.Continent = ct.ContID WHERE UPPER(cm.Maker) = 'VOLVO';
+
+-- 7. List car models from 'Ford Motor Company'
+SELECT md.Model FROM Model_Details md JOIN Car_Makers cm ON md.Maker = cm.ID WHERE cm.FullName = 'Ford Motor Company';
+
+-- 8. Count how many car models are made by Germany
+SELECT COUNT(md.ModelID) AS NumberOfModels FROM Model_Details md JOIN Car_Makers cm ON md.Maker = cm.ID JOIN Countries c ON cm.Country = c.CountryID WHERE c.CountryName = 'Germany';
+
+-- 9. List car models made by Japan along with maker details
+SELECT md.Model, cm.Maker, cm.FullName FROM Model_Details md JOIN Car_Makers cm ON md.Maker = cm.ID JOIN Countries c ON cm.Country = c.CountryID WHERE UPPER(c.CountryName) = 'JAPAN';
+
+-- 10. Retrieve car models with the highest and lowest values of various attributes
+SELECT MIN(cd.mpg), MAX(cd.mpg), MIN(cd.cylinders), MAX(cd.cylinders), MIN(cd.edispl), MAX(cd.edispl), MIN(cd.horsepower), MAX(cd.horsepower), MIN(cd.weight), MAX(cd.weight), MIN(cd.accel), MAX(cd.accel), cm.FullName, c.CountryName, ct.Continent FROM Car_Details cd LEFT JOIN Car_Names cn ON cd.id = cn.id LEFT JOIN Model_Details md ON cn.model = md.model LEFT JOIN Car_Makers cm ON md.maker = cm.id LEFT JOIN Countries c ON cm.country = c.countryid LEFT JOIN Continents ct ON c.continent = ct.contid GROUP BY GROUPING SETS((cn.model, cm.fullname, c.countryname, ct.continent), ());
+
+-- 11. Find the year in which the most cars were made
+SELECT Year, COUNT(ID) AS NumberOfCars FROM Car_Details GROUP BY Year ORDER BY NumberOfCars DESC FETCH FIRST 1 ROW ONLY;
+
+-- 12. Find the year with the least number of cars made
+SELECT Year, COUNT(ID) AS NumberOfCars FROM Car_Details GROUP BY Year ORDER BY NumberOfCars ASC FETCH FIRST 1 ROW ONLY;
+
+-- 13. Calculate the minimum, maximum, and average of various attributes per year
+SELECT Year, MIN(Mpg), MAX(Mpg), AVG(Mpg), MIN(Cylinders), MAX(Cylinders), AVG(Cylinders), MIN(Edispl), MAX(Edispl), AVG(Edispl), MIN(Horsepower), MAX(Horsepower), AVG(Horsepower), MIN(Weight), MAX(Weight), AVG(Weight), MIN(Accel), MAX(Accel), AVG(Accel) FROM Car_Details GROUP BY Year;
+
+-- 14. Perform statistical analysis on Horsepower, Weight, and Accel
+SELECT 'Horsepower' AS Attribute, AVG(Horsepower) AS Mean, MEDIAN(Horsepower) AS Median, STDDEV(Horsepower) AS StdDev FROM Car_Details UNION ALL SELECT 'Weight' AS Attribute, AVG(Weight) AS Mean, MEDIAN(Weight) AS Median, STDDEV(Weight) AS StdDev FROM Car_Details UNION ALL SELECT 'Accel' AS Attribute, AVG(Accel) AS Mean, MEDIAN(Accel) AS Median, STDDEV(Accel) AS StdDev FROM Car_Details;
